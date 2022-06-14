@@ -4,20 +4,20 @@ app = Flask(__name__)
 app.secret_key = 'hush'
 
 @app.route('/')
-@app.route('/counter', methods=["GET", "POST"])
 def button():
-    if "num_of_clicks" in session:
-        session["num_of_clicks"] +=1
-    else:
-        session["num_of_clicks"] = 1
-    if request.method == "POST":
-        return render_template("index.html")
+    if "num_of_clicks" not in session:
+        session["num_of_clicks"] =1
     return render_template("index.html")
 
-@app.route('/destroy_session', methods=["POST"])
+@app.route('/counter', methods=["POST"])
+def counter():
+    session["num_of_clicks"] +=1
+    return redirect("/")
+
+@app.route('/destroy_session')
 def destroy_session():
-    session["num_of_visits"] = 0
-    return render_template("index.html")
+    session.clear()
+    return redirect("/")
 
 # @app.route('/destroy_session')
 # def destroy():

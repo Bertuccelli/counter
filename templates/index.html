@@ -11,10 +11,12 @@
     <h1>Counter Button!</h1>
     <div class="container">
         <h2>{{session["num_of_clicks"]}}</h2>
-        <form method="post">
+        <form method="post" action="/counter">
             <input type="submit" name="click" value="click!">
-            <input type="submit" name="reset" value="reset!">
         </form>
+        <button>
+            <a href="/destroy_session">reset!</a>
+        </button>
     </div>
 </body>
 </html>
